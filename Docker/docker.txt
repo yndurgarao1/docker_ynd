@@ -1,0 +1,202 @@
+#Docker Installation on Amazon Linux Instance:
+[root@ip-172-31-80-214 ec2-user]# yum install -y docker
+			Amazon Linux 2023 Kernel Livepatch repository                                                                                                207 kB/s |  31 kB     00:00
+			Dependencies resolved.
+			=============================================================================================================================================================================
+			 Package                                         Architecture                    Version                                          Repository                            Size
+			=============================================================================================================================================================================
+			Installing:
+			 docker                                          x86_64                          25.0.14-1.amzn2023.0.2                           amazonlinux                           46 M
+			Installing dependencies:
+			 container-selinux                               noarch                          4:2.245.0-1.amzn2023                             amazonlinux                           58 k
+			 containerd                                      x86_64                          2.2.1-1.amzn2023.0.1                             amazonlinux                           24 M
+			 iptables-libs                                   x86_64                          1.8.8-3.amzn2023.0.2                             amazonlinux                          401 k
+			 iptables-nft                                    x86_64                          1.8.8-3.amzn2023.0.2                             amazonlinux                          183 k
+			 libcgroup                                       x86_64                          3.0-1.amzn2023.0.1                               amazonlinux                           75 k
+			 libnetfilter_conntrack                          x86_64                          1.0.8-2.amzn2023.0.2                             amazonlinux                           58 k
+			 libnfnetlink                                    x86_64                          1.0.1-19.amzn2023.0.2                            amazonlinux                           30 k
+			 libnftnl                                        x86_64                          1.2.2-2.amzn2023.0.2                             amazonlinux                           84 k
+			 pigz                                            x86_64                          2.5-1.amzn2023.0.3                               amazonlinux                           83 k
+			 runc                                            x86_64                          1.3.4-1.amzn2023.0.2                             amazonlinux                          3.9 M
+
+			Transaction Summary
+			=============================================================================================================================================================================
+			Install  11 Packages
+
+			Total download size: 75 M
+			Installed size: 282 M
+			Downloading Packages:
+			(1/11): container-selinux-2.245.0-1.amzn2023.noarch.rpm                                                                                      1.8 MB/s |  58 kB     00:00
+			(2/11): iptables-libs-1.8.8-3.amzn2023.0.2.x86_64.rpm                                                                                         19 MB/s | 401 kB     00:00
+			(3/11): iptables-nft-1.8.8-3.amzn2023.0.2.x86_64.rpm                                                                                         6.9 MB/s | 183 kB     00:00
+			(4/11): libcgroup-3.0-1.amzn2023.0.1.x86_64.rpm                                                                                              3.0 MB/s |  75 kB     00:00
+			(5/11): libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64.rpm                                                                               2.3 MB/s |  58 kB     00:00
+			(6/11): libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64.rpm                                                                                        1.4 MB/s |  30 kB     00:00
+			(7/11): libnftnl-1.2.2-2.amzn2023.0.2.x86_64.rpm                                                                                             3.2 MB/s |  84 kB     00:00
+			(8/11): pigz-2.5-1.amzn2023.0.3.x86_64.rpm                                                                                                   3.3 MB/s |  83 kB     00:00
+			(9/11): runc-1.3.4-1.amzn2023.0.2.x86_64.rpm                                                                                                  73 MB/s | 3.9 MB     00:00
+			(10/11): containerd-2.2.1-1.amzn2023.0.1.x86_64.rpm                                                                                           71 MB/s |  24 MB     00:00
+			(11/11): docker-25.0.14-1.amzn2023.0.2.x86_64.rpm                                                                                             72 MB/s |  46 MB     00:00
+			-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			Total                                                                                                                                        111 MB/s |  75 MB     00:00
+			Running transaction check
+			Transaction check succeeded.
+			Running transaction test
+			Transaction test succeeded.
+			Running transaction
+			  Preparing        :                                                                                                                                                     1/1
+			  Installing       : runc-1.3.4-1.amzn2023.0.2.x86_64                                                                                                                   1/11
+			  Installing       : containerd-2.2.1-1.amzn2023.0.1.x86_64                                                                                                             2/11
+			  Running scriptlet: containerd-2.2.1-1.amzn2023.0.1.x86_64                                                                                                             2/11
+			  Installing       : pigz-2.5-1.amzn2023.0.3.x86_64                                                                                                                     3/11
+			  Installing       : libnftnl-1.2.2-2.amzn2023.0.2.x86_64                                                                                                               4/11
+			  Installing       : libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64                                                                                                          5/11
+			  Installing       : libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64                                                                                                 6/11
+			  Installing       : iptables-libs-1.8.8-3.amzn2023.0.2.x86_64                                                                                                          7/11
+			  Installing       : iptables-nft-1.8.8-3.amzn2023.0.2.x86_64                                                                                                           8/11
+			  Running scriptlet: iptables-nft-1.8.8-3.amzn2023.0.2.x86_64                                                                                                           8/11
+			  Installing       : libcgroup-3.0-1.amzn2023.0.1.x86_64                                                                                                                9/11
+			  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch                                                                                                     10/11
+			  Installing       : container-selinux-4:2.245.0-1.amzn2023.noarch                                                                                                     10/11
+			  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch                                                                                                     10/11
+			  Running scriptlet: docker-25.0.14-1.amzn2023.0.2.x86_64                                                                                                              11/11
+			  Installing       : docker-25.0.14-1.amzn2023.0.2.x86_64                                                                                                              11/11
+			  Running scriptlet: docker-25.0.14-1.amzn2023.0.2.x86_64                                                                                                              11/11
+			Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /usr/lib/systemd/system/docker.socket.
+
+			  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch                                                                                                     11/11
+			  Running scriptlet: docker-25.0.14-1.amzn2023.0.2.x86_64                                                                                                              11/11
+			  Verifying        : container-selinux-4:2.245.0-1.amzn2023.noarch                                                                                                      1/11
+			  Verifying        : containerd-2.2.1-1.amzn2023.0.1.x86_64                                                                                                             2/11
+			  Verifying        : docker-25.0.14-1.amzn2023.0.2.x86_64                                                                                                               3/11
+			  Verifying        : iptables-libs-1.8.8-3.amzn2023.0.2.x86_64                                                                                                          4/11
+			  Verifying        : iptables-nft-1.8.8-3.amzn2023.0.2.x86_64                                                                                                           5/11
+			  Verifying        : libcgroup-3.0-1.amzn2023.0.1.x86_64                                                                                                                6/11
+			  Verifying        : libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64                                                                                                 7/11
+			  Verifying        : libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64                                                                                                          8/11
+			  Verifying        : libnftnl-1.2.2-2.amzn2023.0.2.x86_64                                                                                                               9/11
+			  Verifying        : pigz-2.5-1.amzn2023.0.3.x86_64                                                                                                                    10/11
+			  Verifying        : runc-1.3.4-1.amzn2023.0.2.x86_64                                                                                                                  11/11
+
+			Installed:
+			  container-selinux-4:2.245.0-1.amzn2023.noarch                    containerd-2.2.1-1.amzn2023.0.1.x86_64                  docker-25.0.14-1.amzn2023.0.2.x86_64
+			  iptables-libs-1.8.8-3.amzn2023.0.2.x86_64                        iptables-nft-1.8.8-3.amzn2023.0.2.x86_64                libcgroup-3.0-1.amzn2023.0.1.x86_64
+			  libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64               libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64               libnftnl-1.2.2-2.amzn2023.0.2.x86_64
+			  pigz-2.5-1.amzn2023.0.3.x86_64                                   runc-1.3.4-1.amzn2023.0.2.x86_64
+
+			Complete!
+[root@ip-172-31-80-214 ec2-user]#
+===============================================================================================================================
+[root@ip-172-31-88-196 ~]# docker login
+		Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
+		You can log in with your password or a Personal Access Token (PAT). Using a limited-scope PAT grants better security and is required for organizations using SSO. Learn more at https://docs.docker.com/go/access-tokens/
+
+		Username: yndurgarao1
+		Password:
+		WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+		Configure a credential helper to remove this warning. See
+		https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+		Login Succeeded
+====================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@ip-172-31-88-196 ~]# docker run hello-world
+		Unable to find image 'hello-world:latest' locally
+		latest: Pulling from library/hello-world
+		4f55086f7dd0: Pull complete
+		Digest: sha256:452a468a4bf985040037cb6d5392410206e47db9bf5b7278d281f94d1c2d0931
+		Status: Downloaded newer image for hello-world:latest
+
+		Hello from Docker!
+		This message shows that your installation appears to be working correctly.
+
+		To generate this message, Docker took the following steps:
+		 1. The Docker client contacted the Docker daemon.
+		 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+			(amd64)
+		 3. The Docker daemon created a new container from that image which runs the
+			executable that produces the output you are currently reading.
+		 4. The Docker daemon streamed that output to the Docker client, which sent it
+			to your terminal.
+
+		To try something more ambitious, you can run an Ubuntu container with:
+		 $ docker run -it ubuntu bash
+
+		Share images, automate workflows, and more with a free Docker ID:
+		 https://hub.docker.com/
+
+		For more examples and ideas, visit:
+		 https://docs.docker.com/get-started/
+		 
+=====================================================================================
+Docker Commands:
+   3  yum install -y docker  	===> To Install Docker in amazon linux ECE Instance
+    4  service docker status  	===> To check docker is running or not
+    5  service docker start   	===> To start docker service
+    7  service docker status 	===> To check docker is running or not
+    9  docker --version  		===> To Check Docker version 
+   10  docker -v
+   11  docker info				===> To check docker information [ client and server ]
+   12  ifconfig -a 				===> Once docker is installed docker 0 network is there or not to check 
+   13  docker image ls			===> to list the images 
+   14  docker images			
+   15  docker pull hello-world	===> to pull hello-world image from hello-world 
+   18  docker ps				===> To Check running containers
+   19  docker ps -a				===> To check runnng/stopped/paused containers
+   30  docker run hello-world	===> To run hello-world container 
+   31  docker pull nginx		===> To pull nginx image from docker hub
+   33  docker inspect nginx		===> to get the details about nginx image 
+   34  docker login				===> To autheticate for docker hub it will prompt username and password please provide the require ddetails to login
+   37  docker tag nginx:latest yndurgarao1/nginx_ynd:0.1  ===> to create a new tag with personal docker hub username
+   40  docker push yndurgarao1/nginx_ynd:0.1			  ===> to push the image to docker hub 
+   41  docker run -dit --name nginx_container yndurgarao1/nginx_ynd:0.1  ===> to create nginx container
+   43  docker stop nginx_container  ===> to stop running container 
+   44  docker rm nginx_container	===> To remove stopped container
+   45  docker run -dit --name ynd_nginx_Container -p 3000:80 yndurgarao1/nginx_ynd:0.1  ===> to create nginx container with port mapping
+   50  docker exec -it ynd_nginx_Container bash 	===> to login to docker container 
+   53  docker inspect ynd_nginx_Container  			===> to get container details 
+   57  docker network ls	===> To list docker network 
+   64  docker volume ls		===> to lst docker volumes
+   65  docker volume --help ===> to get more information on volume 
+   66  docker volume create ynd_volume1		===> to create docker volume  
+   75  docker run -dit --name ynd_volume_container -p 3000:80 -v ynd_volume1:/ynd nginx:latest  ===> To create container with attachng volume and port
+   76  docker exec -it ynd_volume_container bash   ===> to login to cotainer
+   82  docker rm -f ynd_volume_container  	===> to remove running container
+   88  docker volume rm ynd_volume1			===> To remove docker volume 
+   94  docker network create ynd_network
+# To commit the changes in container 
+  95   docker run -dit --name commit_container -p 3400:80 --network ynd_network nginx:latest  ===> to create docker container with docker network 
+  105  docker exec -it commit_container bash
+  106  docker pull ubuntu:latest
+  107  docker run -dit --name ubuntu_cont ubuntu:latest
+  108  docker exec -it ubuntu_cont bash
+  109  # yum install -y git
+  110  docker commit ubuntu_cont yndurgarao1/ubuntu:1.0
+  111  docker push yndurgarao1/ubuntu:1.0
+===================================================
+
+
+
