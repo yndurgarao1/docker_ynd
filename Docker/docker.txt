@@ -551,48 +551,7 @@ To Pause and unpause container
 	[root@ip-172-31-91-168 ec2-user]# docker volume rm volume1_ynd
 		volume1_ynd
 ===========================================================================================================
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=====================================================================================
 Docker Commands:
-   
-   1
    33  docker inspect nginx		===> to get the details about nginx image 
    34  docker login				===> To autheticate for docker hub it will prompt username and password please provide the require ddetails to login
    37  docker tag nginx:latest yndurgarao1/nginx_ynd:0.1  ===> to create a new tag with personal docker hub username
