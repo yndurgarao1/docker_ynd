@@ -614,18 +614,6 @@ Syntax: docker build -t <Image_Name>:<Tag> -f <Dockerfile_name> .
 		CMD ["cat", "message.txt"]
 	**************************************************************************************
 ================================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
 Docker Commands:
    33  docker inspect nginx		===> to get the details about nginx image 
    34  docker login				===> To autheticate for docker hub it will prompt username and password please provide the require ddetails to login
