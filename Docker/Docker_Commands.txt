@@ -564,15 +564,13 @@ Syntax:	docker commit <Container_name or Container id> <Docker username>/<New_Im
 #Docker file
 	[root@ip-172-31-77-131 ~]# cat Dockerfile
 	# Use Ubuntu as the base image
-	FROM ubuntu:20.04
-	[root@ip-172-31-77-131 ~]#
-	
-	-----------------------------------------------
+		FROM ubuntu:20.04
+	**************************************************************************************
 	[root@ip-172-31-77-131 ~]# cat Dockerfile
 	# Use Alpine Linux (very small image)
-	FROM alpine:3.18
+		FROM alpine:3.18
 	[root@ip-172-31-77-131 ~]#
-	-----------------------------------------------
+	**************************************************************************************
 Syntax: docker build -t <Image_name>:<Tag> .
 Syntax: docker build -t <Image_Name>:<Tag> -f <Dockerfile_name> .
 	
@@ -585,8 +583,38 @@ Syntax: docker build -t <Image_Name>:<Tag> -f <Dockerfile_name> .
 		LABEL maintainer="Kadali <kadali@example.com>"
 		LABEL version="1.0"
 		LABEL description="This image sets up a basic Ubuntu environment with curl installed."
-		[root@ip-172-31-77-131 ~]#
-		--------------------------------------------------------------------------
+	[root@ip-172-31-77-131 ~]#
+	**************************************************************************************
+	[root@ip-172-31-77-131 ~]# cat Dockerfile
+		# Base image
+		FROM ubuntu:20.04
+
+		# Add metadata about the image
+		LABEL maintainer="Kadali <kadali@example.com>" \
+			  version="1.0" \
+			  description="Example Dockerfile using FROM, LABEL, and RUN instructions."
+
+		# Execute commands inside the image during build
+		RUN apt-get update && apt-get install -y curl
+	**************************************************************************************
+		[root@ip-172-31-77-131 ~]# cat DockerfileFROM ubuntu:20.04
+
+		LABEL maintainer="Kadali <kadali@example.com>" \
+			  description="Example showing WORKDIR usage"
+
+		# Set working directory
+		WORKDIR /app
+
+		# Copy files into /app
+		COPY . .
+
+		# Run commands inside /app
+		RUN echo "Hello from WORKDIR" > message.txt
+
+		CMD ["cat", "message.txt"]
+	**************************************************************************************
+================================================================================================
+
 
 
 
