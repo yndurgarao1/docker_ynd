@@ -1,0 +1,2 @@
+# Use Alpine Linux (very small image)
+FROM alpine:3.18

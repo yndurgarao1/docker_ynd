@@ -1,5 +1,0 @@
-#Base Image
-FROM ubuntu:18.04
-#When the container runs, it executes
-CMD ["echo", "Hello-World"]
-
