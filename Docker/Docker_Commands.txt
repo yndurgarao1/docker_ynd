@@ -154,6 +154,8 @@
 		Mar 29 05:13:05 ip-172-31-80-214.ec2.internal dockerd[28101]: time="2026-03-29T05:13:05.743604981Z" level=info msg="API listen on /run/docker.sock"
 		Mar 29 05:13:05 ip-172-31-80-214.ec2.internal systemd[1]: Started docker.service - Docker Application Container Engine.
 		lines 1-22/22 (END)
+		
+#Press q for quit the terminal
 ====================================================================================================
 #To Stop docker service
 	[root@ip-172-31-80-214 ec2-user]# service docker stop
@@ -220,6 +222,7 @@
 		 Live Restore Enabled: false
 ====================================================================================================
 #To check docker is installed perfectly
+syntax: docker run <image_name>  ====> First it will check image present locally or not, if not present it will pull the image and create the container 
 	[root@ip-172-31-80-214 ec2-user]# docker run hello-world
 		Unable to find image 'hello-world:latest' locally
 		latest: Pulling from library/hello-world
@@ -258,7 +261,7 @@ Explanation:
 
 			.	The container runs a small program that prints a confirmation message and exits.
 ====================================================================================================
-#to check Docker images 	
+#To check Docker images 	
 	[root@ip-172-31-80-214 ec2-user]# docker images
 		REPOSITORY    TAG       IMAGE ID       CREATED      SIZE
 		hello-world   latest    e2ac70e7319a   5 days ago   10.1kB
@@ -266,7 +269,8 @@ Explanation:
 		REPOSITORY    TAG       IMAGE ID       CREATED      SIZE
 		hello-world   latest    e2ac70e7319a   5 days ago   10.1kB
 ====================================================================================================
-#to pull the image from docker hub
+#Pull the image from Docker hub
+Syntax: docker pull <image_name>:<tag>
 	[root@ip-172-31-80-214 ec2-user]# docker pull nginx:stable-alpine-perl
 		stable-alpine-perl: Pulling from library/nginx
 		589002ba0eae: Pull complete
@@ -297,12 +301,14 @@ Explanation:
 		REPOSITORY    TAG                  IMAGE ID       CREATED      SIZE
 		nginx         stable-alpine-perl   00f33393259f   4 days ago   103MB
 		hello-world   latest               e2ac70e7319a   5 days ago   10.1kB
+Syntax: docker tag <image_name>:<tag> <New Image_Name>:<tag>
 	[root@ip-172-31-80-214 ec2-user]# docker tag nginx:stable-alpine-perl yndurgarao1/nginx_ynd:0.1
 	[root@ip-172-31-80-214 ec2-user]# docker images
 		REPOSITORY              TAG                  IMAGE ID       CREATED      SIZE
 		nginx                   stable-alpine-perl   00f33393259f   4 days ago   103MB
 		yndurgarao1/nginx_ynd   0.1                  00f33393259f   4 days ago   103MB
 		hello-world             latest               e2ac70e7319a   5 days ago   10.1kB
+Syntax: docker push <Docker Username>/<Image_Name>:<Tag>
 	[root@ip-172-31-80-214 ec2-user]# docker push yndurgarao1/nginx_ynd:0.1
 		The push refers to repository [docker.io/yndurgarao1/nginx_ynd]
 		74b507ec1cbd: Mounted from library/nginx
@@ -316,6 +322,8 @@ Explanation:
 		989e799e6349: Mounted from library/nginx
 		0.1: digest: sha256:cf7a61b3876ee0fc091e9f8584f800fb55f50f0d8c012c5ce2bb571b3ad5ab72 size: 2201
 ====================================================================================================
+#To create container
+Syntax: docker run -dit --name <Container_Name> -p <Container_Port>:<Actual_Application_Port> <Image_name>:<Tag>
 	[root@ip-172-31-80-214 ec2-user]# docker run -dit --name nginx_container -p 2626:80 yndurgarao1/nginx_ynd:0.1
 		5fd84b767fc82abcbfa0d3a5503ebba3fb1a6d3c64afa8697eb18865c4c06891
 	Explanation:
@@ -341,12 +349,14 @@ How to check all containers [ running /pause/ stopped ]
 		edcae7438ffe   hello-world                 "/hello"                 28 minutes ago   Exited (0) 28 minutes ago                                           awesome_mclaren
 ======================================================================================================
 To Pause and unpause container
+Syntax: docker pause <Contaner_ID or Container_Name>
 	[root@ip-172-31-80-214 ec2-user]# docker pause nginx_container
 		nginx_container
 	[root@ip-172-31-80-214 ec2-user]# docker ps -a
 		CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS                      PORTS                                   NAMES
 		5fd84b767fc8   yndurgarao1/nginx_ynd:0.1   "/docker-entrypoint.…"   3 minutes ago    Up 3 minutes (Paused)       0.0.0.0:2626->80/tcp, :::2626->80/tcp   nginx_container
 		edcae7438ffe   hello-world                 "/hello"                 30 minutes ago   Exited (0) 30 minutes ago                                           awesome_mclaren
+Syntax:	docker unpause <Container_name or Container_ID>
 	[root@ip-172-31-80-214 ec2-user]# docker unpause nginx_container
 		nginx_container
 ======================================================================================================
@@ -472,7 +482,7 @@ To Pause and unpause container
 			* nginx is not running
 		root@6d885ba5dfbe:/# service nginx start
 			* Starting nginx nginx                                                                                                            
-	#docker commit <Container_name or Container id> <New_Image_Name:Tag>  ===> Commit the container
+Syntax:	docker commit <Container_name or Container id> <Docker username>/<New_Image_Name:Tag>  ===> Commit the container
 	[root@ip-172-31-91-168 ec2-user]# docker commit ubuntu_container yndurgarao1/ubuntu_git:0.1
 		sha256:ebcbcbc0a8d3ca676d14d0a3312ccf1a45115293087cb1c21431b59402292abf
 	[root@ip-172-31-91-168 ec2-user]# docker image ls
